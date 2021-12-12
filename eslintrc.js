@@ -1,0 +1,67 @@
+module.exports = {
+  env: {
+    browser: true,
+    es2021: true,
+    jest: true,
+  },
+  globals: {
+    VERSION: 'readonly',
+    AUTHOR: 'readonly',
+    JSX: true,
+    React: true,
+    jsdom: true,
+    context: true,
+  },
+  extends: ['plugin:react/recommended', 'airbnb/base', 'plugin:prettier/recommended'],
+  plugins: ['import', 'react', '@typescript-eslint', 'eslint-plugin-prettier', 'only-warn'],
+  settings: {
+    react: {
+      createClass: 'createReactClass',
+      pragma: 'React',
+      fragment: 'Fragment',
+      version: 'detect',
+      flowVersion: '0.53',
+    },
+    'import/resolver': {
+      node: {
+        extensions: ['.js', '.jsx', '.ts', '.tsx', '.d.ts'],
+      },
+    },
+  },
+  parser: '@typescript-eslint/parser',
+  parserOptions: {
+    ecmaFeatures: {
+      jsx: true,
+    },
+    ecmaVersion: 13,
+    sourceType: 'module',
+  },
+  rules: {
+    '@typescript-eslint/dot-notation': 'off',
+    '@typescript-eslint/no-implied-eval': 'off',
+    '@typescript-eslint/no-throw-literal': 'off',
+    '@typescript-eslint/return-await': 'off',
+
+    'import/extensions': 'off',
+    'import/prefer-default-export': 'off',
+    '@typescript-eslint/explicit-module-boundary-types': 'off',
+    'import/no-self-import': 'off',
+    'class-methods-use-this': 'off',
+    'max-len': 'off',
+    indent: 'off',
+    'eol-last': ['error', 'always'],
+    'react/prop-types': 'off',
+    'consistent-return': 'off',
+    '@typescript-eslint/no-unsafe-return': 'off',
+    'react/jsx-filename-extension': ['error', { extensions: ['.jsx', '.tsx'] }],
+    'react/react-in-jsx-scope': 'off',
+    'react/function-component-definition': 'off',
+    '@typescript-eslint/no-unused-expressions': 'off',
+    'no-unused-expressions': 'off',
+    '@typescript-eslint/no-floating-promises': 'off',
+    'no-floating-promises': 'off',
+    'react/jsx-props-no-spreading': 'off',
+    'no-undef': 'off',
+    'no-unused-vars': ['error', { args: 'none' }],
+  },
+};
