@@ -1,10 +1,10 @@
-
-
+import { Router } from "./routes"
+import { SystemProvider } from "../src/context/SystemContext"
 const App = () => {
   return (
-    <div className="App">
-       
-    </div>
+    <SystemProvider>
+      <Router />
+    </SystemProvider>
   );
 }
 
