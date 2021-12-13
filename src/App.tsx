@@ -1,5 +1,5 @@
 import { Router } from "./routes"
-import { SystemProvider } from "../src/context/SystemContext"
+import { SystemProvider } from "./context/SystemContext"
 const App = () => {
   return (
     <SystemProvider>
