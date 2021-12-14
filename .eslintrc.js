@@ -64,4 +64,4 @@ module.exports = {
     'no-undef': 'off',
     'no-unused-vars': ['error', { args: 'none' }],
   },
-};
+}
