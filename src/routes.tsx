@@ -1,17 +1,15 @@
-// import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { Home } from './pages/Home'
 
 export const Router = () => {
-  return null
-  // (
-  //     <BrowserRouter>
-  //         <Routes>
-  //             <Route path="/">
-  //                 <Route index element={} />
-  //                 <Route path="" element={} />
-  //             </Route>
-  //             <Route path="" element={} />
-  //             <Route path="*" element={} />
-  //         </Routes>
-  //     </BrowserRouter>
-  // );
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/">
+          <Route path="" element={<Home />} />
+        </Route>
+        {/* <Route path="*" element={} /> */}
+      </Routes>
+    </BrowserRouter>
+  )
 }
