@@ -1,3 +1,4 @@
+import { FaSearch } from 'react-icons/fa'
 import { Container } from './styles'
 
 interface IProps {
@@ -8,16 +9,15 @@ interface IProps {
 export const SearchBox = ({ placeholder, onChange, value }: IProps) => {
   return (
     <Container>
-      <form>
-        <input
-          type="text"
-          placeholder={placeholder}
-          value={value}
-          onChange={e => {
-            onChange(e.target.value)
-          }}
-        />
-      </form>
+      <input
+        type="text"
+        placeholder={placeholder}
+        value={value}
+        onChange={e => {
+          onChange(e.target.value)
+        }}
+      />
+      <FaSearch className="search-icon" />
     </Container>
   )
 }
