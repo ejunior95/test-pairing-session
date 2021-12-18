@@ -1,7 +1,9 @@
-import { GiphyFetch } from '@giphy/js-fetch-api'
+import { GifsResult, GiphyFetch } from '@giphy/js-fetch-api'
 import { Carousel, Gif, Grid } from '@giphy/react-components'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import ResizeObserver from 'react-resize-observer'
+import { SearchBox } from '../../components/SearchBox'
+
 import { Container } from './styles'
 
 const giphyFetch = new GiphyFetch('47T7d1BX1kgrXAbahAEjWVUnK3kqj1ub')
@@ -11,12 +13,11 @@ function CarouselDemo() {
   return <Carousel fetchGifs={fetchGifs} gifHeight={200} gutter={6} />
 }
 
-function GridDemo({ onGifClick }: any) {
-  const fetchGifs = (offset: number) => giphyFetch.trending({ offset, limit: 10 })
+function GridDemo({ onGifClick, gifs }: any) {
   const [width, setWidth] = useState(window.innerWidth)
   return (
     <>
-      <Grid onGifClick={onGifClick} fetchGifs={fetchGifs} width={width} columns={3} gutter={6} />
+      <Grid onGifClick={onGifClick} fetchGifs={gifs} width={width} columns={3} gutter={6} />
       <ResizeObserver
         onResize={({ width: newWidth }) => {
           setWidth(newWidth)
@@ -28,13 +29,25 @@ function GridDemo({ onGifClick }: any) {
 
 export const Home = () => {
   const [modalGif, setModalGif] = useState()
+  const [offset, setOffset] = useState()
+  const [search, setSearch] = useState('dogs')
+  const [gifList, setGifList] = useState<GifsResult>({} as GifsResult)
+
+  useEffect(() => {
+    giphyFetch.search(search, { offset, limit: 10 }).then(res => {
+      setGifList(res)
+    })
+  }, [offset, search])
+
   return (
     <Container>
+      <SearchBox placeholder="Search your favorite gifs..." onChange={setSearch} value={search} />
       <GridDemo
         onGifClick={(gif: any, e: any) => {
           e.preventDefault()
           setModalGif(gif)
         }}
+        gifs={gifList}
       />
       {modalGif && (
         <div
